@@ -1,0 +1,15 @@
+on:
+  schedule:
+  - cron:  "*/10 * * * *"
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "eugenp/tutorials"
+        source_branch: "*"
+        destination_branch: "*"
+        github_token: ${{ secrets.MY_GITHUB_TOKEN }}
